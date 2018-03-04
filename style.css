@@ -27,6 +27,11 @@ ul {
 .nav-bar {
   /* padding-top: 20px; */
   /* padding-bottom: 20px; */
+  /* width: 100%; */
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   padding: 20px 16px;
 }
 
@@ -66,7 +71,7 @@ ul {
   display: block;
   position: relative;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #b7b7b7;
   /* text-decoration: none; */
   font-weight: bold;
   padding: 5px 0;
@@ -84,4 +89,11 @@ ul {
 
 .nav-bar__nav-item:hover > a:after {
   border-bottom: 3px solid #e06567;
+}
+
+.banner {
+  padding-top: 41.454545%;
+  background-image: url('./images/rs-cover.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
