@@ -33,12 +33,13 @@ ul {
 .nav-bar__logo {
   float: left;
   font-size: 0;
+  padding: 8px 0;
 }
 
 .nav-bar__logo-text {
   display: inline-block;
   font-size: 24px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Arial Black";
   color: #9a9da2;
 }
 
@@ -52,8 +53,7 @@ ul {
 
 .nav-bar__nav {
   float: right;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding: 9px 0;
 }
 
 .nav-bar__nav-item {
