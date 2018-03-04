@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./style.css">
+  <script src="//at.alicdn.com/t/font_579428_5nfnqrrro6uk57b9.js"></script>
+  <style type="text/css">
+    .icon {
+      width: 1em; height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+  </style>
   <title>王凡华的个人简历</title>
 </head>
 <body>
@@ -37,19 +46,19 @@
   </div>
 
   <!-- 主要内容 -->
-  <main>
+  <main class="mine-info">
     <div class="card">
-      <div class="card__bd">
+      <div class="card__bd bs-clearfix">
         <div class="card__avatar">
-          <img src="#" alt="头像">
+          <img src="./images/avatar.jpg" width="299" height="347" alt="头像">
         </div>
     
         <div class="card__profile">
-          <span class="welcome">Hello</span>
+          <span class="welcome">Hello<span class="triangle"></span></span>
           <h1>王凡华</h1>
           <p>前端开发工程师</p>
           <hr>
-          <dl>
+          <dl class="bs-clearfix">
             <dt>年龄</dt>
             <dd>25</dd>
             <dt>所在城市</dt>
@@ -61,14 +70,22 @@
           </dl>
         </div>
       </div>
-      <footer class="card__ft">
-        <a class="media" href="#"><img class="media__img" src="#" alt="..."></a>
-        <a class="media" href="#"><img class="media__img" src="#" alt="..."></a>
-        <a class="media" href="#"><img class="media__img" src="#" alt="..."></a>
-        <a class="media" href="#"><img class="media__img" src="#" alt="..."></a>
-        <a class="media" href="#"><img class="media__img" src="#" alt="..."></a>
-        <a class="media" href="#"><img class="media__img" src="#" alt="..."></a>
-        <a class="media" href="#"><img class="media__img" src="#" alt="..."></a>
+      <footer class="card__ft medias">
+        <a class="media" href="#">
+          <svg class="icon media__icon" aria-hidden="true">
+            <use xlink:href="#icon-qq"></use>
+          </svg>
+        </a>
+        <a class="media" href="#">
+          <svg class="icon media__icon" aria-hidden="true">
+            <use xlink:href="#icon-github"></use>
+          </svg>
+        </a>
+        <a class="media" href="#">
+          <svg class="icon media__icon" aria-hidden="true">
+            <use xlink:href="#icon-weixin"></use>
+          </svg>
+        </a>
       </footer>
     </div>
 

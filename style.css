@@ -4,8 +4,8 @@
 }
 
 body {
-  background-color: black;
-  color: #ffffff;
+  background-color: #efefef;
+  color: #000000;
   line-height: 1;
 }
 
@@ -97,6 +97,7 @@ ul {
   background-image: url('./images/rs-cover.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 
 .banner__mask {
@@ -105,5 +106,110 @@ ul {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.card {
+  max-width: 940px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+.card__bd {
+  padding: 50px;
+}
+
+.card__avatar {
+  float: left;
+}
+
+.card__avatar img {
+  vertical-align: middle;
+}
+
+.card__profile {
+  margin-left: 65px;
+  width: 476px;
+  float: left;
+}
+
+.card__profile .welcome {
+  position: relative;
+  display: inline-block;
+  background-color: #e6686a;
+  color: #ffffff;
+  /* 防止在不同机器上行高不同 */
+  line-height: 22px;
+  padding: 4px 15px;
+}
+
+.card__profile .welcome .triangle {
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  left: 4px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #e6686a;
+  border-top-width: 0;
+}
+
+.card__profile h1 {
+  margin-top: 28px;
+}
+
+.card__profile p {
+  margin-top: 16px;
+}
+
+.card__profile hr {
+  height: 0;
+  border: none;
+  border-top: 1px solid #dedede;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card__profile dl dt,
+.card__profile dl dd {
+  float: left;
+  padding: 15px 0;
+}
+
+.card__profile dl dt {
+  width: 30%;
+  font-weight: bold;
+}
+
+.card__profile dl dd {
+  width: 70%;
+  color: #9da0a7;
+}
+
+.card__ft {
+  background-color: #e6686a;
+}
+
+.medias {
+  text-align: center;
+  font-size: 0;
+  padding: 11px;
+}
+
+.medias .media {
+  display: inline-block;
+  margin: 0 16px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.medias .media:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.medias .media__icon {
+  width: 28px;
+  height: 28px;
+  fill: #ffffff;
 }
