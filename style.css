@@ -92,8 +92,18 @@ ul {
 }
 
 .banner {
+  position: relative;
   padding-top: 41.454545%;
   background-image: url('./images/rs-cover.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.banner__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
