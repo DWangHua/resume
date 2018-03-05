@@ -20,6 +20,11 @@ ul {
   list-style: none;
 }
 
+.bs-container {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
 .bs-clearfix:after {
   content: '';
   display: block;
@@ -118,8 +123,6 @@ ul {
 
 .card {
   position: relative;
-  max-width: 940px;
-  margin: 0 auto;
   background-color: #ffffff;
   /* 占banner的一半 */
   margin-top: -20.727272%;
@@ -244,8 +247,6 @@ ul {
 }
 
 .description {
-  max-width: 940px;
-  margin: 0 auto;
   margin-top: 22px;
   font-size: 18px;
   line-height: 1.6;
