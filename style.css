@@ -34,6 +34,7 @@ ul {
   right: 0;
   left: 0;
   padding: 20px 16px;
+  z-index: 100;
 }
 
 .nav-bar__logo {
@@ -110,10 +111,17 @@ ul {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* .main {
+  position: relative;
+} */
+
 .card {
+  position: relative;
   max-width: 940px;
   margin: 0 auto;
   background-color: #ffffff;
+  /* 占banner的一半 */
+  margin-top: -20.727272%;
 }
 
 .card__bd {
