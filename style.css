@@ -5,9 +5,10 @@
 
 body {
   background-color: #efefef;
-  color: #000000;
+  color: #3d4451;
   line-height: 1;
   min-width: 940px;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 a {
@@ -114,10 +115,6 @@ ul {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
 }
-
-/* .main {
-  position: relative;
-} */
 
 .card {
   position: relative;
@@ -232,7 +229,7 @@ ul {
 .download {
   display: inline-block;
   font-size: 14px;
-  padding: 21px 55px;
+  padding: 22px 56px;
   border: 1px solid #cdcfd1;
   font-weight: bold;
   background-color: #efefef;
@@ -244,4 +241,12 @@ ul {
 
 .download:hover {
   box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.3);
+}
+
+.description {
+  max-width: 940px;
+  margin: 0 auto;
+  margin-top: 22px;
+  font-size: 18px;
+  line-height: 1.6;
 }
