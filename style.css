@@ -269,10 +269,10 @@ h1,h2,h3,h4,h5,h6 {
   font-size: 34px;
   line-height: 1.2;
   font-weight: 600;
-  margin-bottom: 30px;
 }
 
 .skills__content {
+  margin-top: 30px;
   background-color: #ffffff;
   padding: 40px 50px 0 50px;
 }
@@ -335,3 +335,52 @@ h1,h2,h3,h4,h5,h6 {
 .skill__progress {
   border-radius: 2px;
 }
+
+.tabnav {
+  margin-top: 30px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tabnav > ol{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tabnav__item {
+  float: left;
+}
+
+.tabnav__item + .tabnav__item {
+  margin-left: 40px;
+}
+
+.tabnav__bar {
+  margin-top: 8px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 3px;
+}
+
+.tabnav__bar-inner {
+  height: 100%;
+  width: 34px;
+  background-color: #e6686a;
+  border-radius: 3px;
+}
+
+.works__content {
+  margin-top: 30px;
+  position: relative;
+  height: 597px;
+  /* border: 1px solid red; */
+}
+
+.work {
+  position: absolute;
+}
+
+.work > img {
+  vertical-align: middle;
+}
+

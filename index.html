@@ -146,17 +146,28 @@
   <!-- 作品集 -->
   <section class="section works bs-container">
     <h2 class="section__title">作品集</h2>
-    <nav class="works__nav">
-      <ol>
-        <li class="works__nav-item">所有</li>
-        <li class="works__nav-item">框架作品</li>
-        <li class="works__nav-item">原生JS &amp; CSS</li>
-      </ol>
-    </nav>
+    <div class="bs-align-center">
+      <nav class="tabnav"> 
+        <ol class="bs-clearfix">
+          <li class="tabnav__item">所有</li>
+          <li class="tabnav__item">框架作品</li>
+          <li class="tabnav__item">原生JS &amp; CSS</li>
+        </ol>
+        <div class="tabnav__bar">
+          <div class="tabnav__bar-inner"></div>
+        </div>
+      </nav>
+    </div>
     <div class="works__content">
-      <div class="work work--size-big"></div>
-      <div class="work work--size-small"></div>
-      <div class="work work--size-small"></div>
+      <div style="left: 0; top: 0;" class="work work--size-big">
+        <img src="./images/1.jpg" alt="作品1">
+      </div>
+      <div style="left: 646px; top: 0;" class="work work--size-small">
+        <img src="./images/2.jpg" alt="作品2">
+      </div>
+      <div style="left: 646px; top: 312px;" class="work work--size-small">
+        <img src="./images/3.jpg" alt="作品3">
+      </div>
     </div>
   </section>
 
