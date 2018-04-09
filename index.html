@@ -17,6 +17,15 @@
   <title>王凡华的个人简历</title>
 </head>
 <body>
+  <!-- loading -->
+  <div id="js-loading" class="loading">
+    <div class="pacman">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
   <!-- 顶部导航栏 -->
   <div class="nav-bar bs-clearfix">
     <!-- 左边图片 -->
@@ -170,6 +179,10 @@
       </div>
     </div>
   </section>
-
+  <script>
+    setTimeout(function() {
+      document.getElementById('js-loading').classList.add('loading--disable');
+    }, 2000);
+  </script>
 </body>
 </html>
