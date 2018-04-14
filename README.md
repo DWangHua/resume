@@ -1,8 +1,8 @@
-- [ ] sticky navbar
-- [ ] auto highlight navbar
+- [ x ] sticky navbar
+- [ x ] auto highlight navbar
 - [ ] auto scroll smoothly
-- [ ] menu
+- [ x ] menu
 - [ ] auto hide aside
 - [ ] gapless slides
-- [ ] loading animation
+- [ x ] loading animation
 - [ ] animate when scroll
