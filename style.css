@@ -337,7 +337,8 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 100%;
   right: 0;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   color: #3d4451;
   margin-top: 6px;
 }
@@ -351,6 +352,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #ffffff;
   padding: 8px 12px;
   text-align: right;
+  -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
 
@@ -370,7 +372,18 @@ h1, h2, h3, h4, h5, h6 {
   height: 0;
   width: 100%;
   border-bottom: 3px solid #e06567;
-  animation: hoverTitleBorder 0.4s;
+  -webkit-animation: hoverTitleBorder 0.4s;
+          animation: hoverTitleBorder 0.4s;
+}
+
+@-webkit-keyframes hoverTitleBorder {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 @keyframes hoverTitleBorder {
@@ -385,11 +398,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .hoverdown__active .hoverdown__menu {
   display: block;
-  animation: hoverdownSlide 0.4s;
+  -webkit-animation: hoverdownSlide 0.4s;
+          animation: hoverdownSlide 0.4s;
+}
+
+@-webkit-keyframes hoverdownSlide {
+  0% {
+    /* 百分比，相对于父级宽度 */
+    margin-right: 100%;
+  }
+  100% {
+    margin-right: 0;
+  }
 }
 
 @keyframes hoverdownSlide {
   0% {
+    /* 百分比，相对于父级宽度 */
     margin-right: 100%;
   }
   100% {
