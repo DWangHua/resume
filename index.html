@@ -27,7 +27,7 @@
     </div>
   </div>
   <!-- 顶部导航栏 -->
-  <div class="nav-bar bs-clearfix">
+  <div id="js-nav-bar" class="nav-bar bs-clearfix">
     <!-- 左边图片 -->
     <a class="nav-bar__logo">
       <span class="nav-bar__logo-text nav-bar__logo-text--primary">RS</span>
@@ -183,6 +183,17 @@
     setTimeout(function() {
       document.getElementById('js-loading').classList.add('loading--disable');
     }, 2000);
+
+    var navBar = document.getElementById('js-nav-bar');
+    var  threshold = 10;
+    window.onscroll = function(e) {
+      if (window.scrollY > threshold / 2) {
+        navBar.classList.add('nav-bar--sticky');
+      }
+      if (window.scrollY < threshold) {
+        navBar.classList.remove('nav-bar--sticky');
+      }
+    }
   </script>
 </body>
 </html>

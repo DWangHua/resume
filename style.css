@@ -262,7 +262,8 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
 }
 
 .nav-bar {
@@ -270,8 +271,19 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   right: 0;
   left: 0;
-  padding: 20px 16px;
   z-index: 100;
+  padding: 20px 16px;
+  color: #b7b7b7;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.nav-bar--sticky {
+  background-color: #ffffff;
+  padding: 14px 16px;
+  -webkit-box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.5);
+  color: #3d4451;
 }
 
 .nav-bar__logo {
@@ -310,8 +322,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   position: relative;
   font-size: 12px;
-  color: #b7b7b7;
-  /* text-decoration: none; */
+  color: inherit;
   font-weight: bold;
   padding: 5px 0;
 }
@@ -321,13 +332,17 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   bottom: -3px;
   left: 0;
-  right: 0;
+  /* right: 0; */
   height: 0;
+  width: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   border-bottom: 3px solid transparent;
 }
 
 .nav-bar__nav-item:hover>a:after {
   border-bottom: 3px solid #e06567;
+  width: 100%;
 }
 
 .banner {
