@@ -286,39 +286,42 @@ h1, h2, h3, h4, h5, h6 {
   color: #3d4451;
 }
 
-.nav-bar__logo {
+.nav-bar__hd {
   float: left;
-  font-size: 0;
   padding: 8px 0;
 }
 
-.nav-bar__logo-text {
+.log {
+  font-size: 0;
+}
+
+.logo-text {
   display: inline-block;
   font-size: 24px;
   font-family: "Arial Black";
   color: #9a9da2;
 }
 
-.nav-bar__logo-text+.nav-bar__logo-text {
+.logo-text+.logo-text {
   margin-left: 4px;
 }
 
-.nav-bar__logo-text--primary {
+.logo-text--primary {
   color: #e6686a;
 }
 
-.nav-bar__nav {
+.nav-bar__bd {
   float: right;
   padding: 9px 0;
 }
 
-.nav-bar__nav-item {
+.navs__item {
   float: left;
   margin-left: 17px;
   margin-right: 17px;
 }
 
-.nav-bar__nav-item>a {
+.navs__link {
   display: block;
   position: relative;
   font-size: 12px;
@@ -327,7 +330,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 5px 0;
 }
 
-.nav-bar__nav-item>a:after {
+.navs__link:after {
   content: '';
   position: absolute;
   bottom: -3px;
@@ -340,7 +343,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 3px solid transparent;
 }
 
-.nav-bar__nav-item:hover>a:after {
+.navs__item:hover>.navs__link:after {
   border-bottom: 3px solid #e06567;
   width: 100%;
 }
