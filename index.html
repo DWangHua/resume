@@ -37,9 +37,9 @@
     <!-- 右边导航栏 -->
     <nav class="nav-bar__bd">
       <ul id="js-navs" class="navs bs-clearfix">
-        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#">关于</a></li>
-        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#">技能</a></li>
-        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#">作品</a></li>
+        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteAbout">关于</a></li>
+        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteSkills">技能</a></li>
+        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteWorks">作品</a></li>
         <li class="navs__item hoverdown">
           <a class="navs__link hoverdown__mtitle" href="#">博客</a>
           <ul class="hoverdown__menu">
@@ -48,9 +48,9 @@
             <li class="hoverdown__item">博客3</li>
           </ul>
         </li>
-        <li class="navs__item"><a class="navs__link hoverdown__mtitle" href="#">日历</a></li>
-        <li class="navs__item"><a class="navs__link hoverdown__mtitle" href="#">联系方式</a></li>
-        <li class="navs__item"><a class="navs__link hoverdown__mtitle" href="#">其他</a></li>
+        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#">日历</a></li>
+        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteContact">联系方式</a></li>
+        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteOthres">其他</a></li>
       </ul>
     </nav>
   </div>
@@ -62,7 +62,7 @@
   
 
   <!-- 主要内容 -->
-  <main class="main">
+  <main id="siteAbout" class="main">
     <div class="card bs-container bs-box-shadow">
       <div class="card__bd bs-clearfix">
         <div class="card__avatar">
@@ -117,7 +117,7 @@
   </main>
 
   <!-- 专业技能 -->
-  <section class="section skills bs-container">
+  <section id="siteSkills" class="section skills bs-container">
     <h2 class="section__title">专业技能</h2>
     <ol class="skills__content bs-clearfix bs-box-shadow">
       <li class="skill">
@@ -160,10 +160,10 @@
   </section>
 
   <!-- 作品集 -->
-  <section class="section works bs-container">
+  <section id="siteWorks" class="section works bs-container">
     <h2 class="section__title">作品集</h2>
     <div class="bs-align-center">
-      <nav class="tabnav"> 
+      <nav class="tabnav">
         <ol class="bs-clearfix">
           <li class="tabnav__item">所有</li>
           <li class="tabnav__item">框架作品</li>
@@ -187,30 +187,47 @@
     </div>
   </section>
   <script>
+    let dom = {
+      loading: document.getElementById('js-loading'),
+      navBar: document.getElementById('js-nav-bar'),
+      hoverMenus: document.querySelectorAll('#js-navs .hoverdown'),
+      archors: document.querySelectorAll('.navs__link')
+    };
+
     setTimeout(function() {
-      document.getElementById('js-loading').classList.add('loading--disable');
+      dom.loading.classList.add('loading--disable');
     }, 2000);
 
-    var navBar = document.getElementById('js-nav-bar');
-    var  threshold = 10;
+    var threshold = 10;
     window.onscroll = function(e) {
       if (window.scrollY > threshold / 2) {
-        navBar.classList.add('nav-bar--sticky');
+        dom.navBar.classList.add('nav-bar--sticky');
       }
       if (window.scrollY < threshold) {
-        navBar.classList.remove('nav-bar--sticky');
+        dom.navBar.classList.remove('nav-bar--sticky');
       }
     }
 
-    var hoverMenus = document.querySelectorAll('#js-navs .hoverdown');
-    for (let i = 0; i < hoverMenus.length; i++) {
-      let hoverMenu = hoverMenus[i];
+    for (let i = 0; i < dom.hoverMenus.length; i++) {
+      let hoverMenu = dom.hoverMenus[i];
       hoverMenu.onmouseenter = function(e) {
-        e.target.classList.add('hoverdown__active');
+        e.currentTarget.classList.add('hoverdown__active');
       };
 
       hoverMenu.onmouseleave = function(e) {
-        e.target.classList.remove('hoverdown__active');
+        e.currentTarget.classList.remove('hoverdown__active');
+      };
+    }
+
+    for (let i = 0; i < dom.archors.length; i++) {
+      dom.archors[i].onclick = function(e) {
+        e.preventDefault();
+        let href = e.currentTarget.getAttribute('href');
+        if (href.length === 1 && href[0] === '#') return;
+        let element = document.querySelector(href);
+        let offsetTop = element.offsetTop;
+        let navBarHeight = dom.navBar.offsetHeight;
+        window.scrollTo(0, offsetTop - navBarHeight - 20);
       };
     }
   </script>
