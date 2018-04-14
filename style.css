@@ -317,35 +317,84 @@ h1, h2, h3, h4, h5, h6 {
 
 .navs__item {
   float: left;
-  margin-left: 17px;
-  margin-right: 17px;
+  margin: 0 17px;
 }
 
 .navs__link {
   display: block;
-  position: relative;
   font-size: 12px;
   color: inherit;
   font-weight: bold;
   padding: 5px 0;
 }
 
-.navs__link:after {
+.hoverdown {
+  position: relative;
+}
+
+.hoverdown__menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  color: #3d4451;
+  margin-top: 6px;
+}
+
+.hoverdown__menu:hover {
+  cursor: pointer;
+}
+
+.hoverdown__item {
+  white-space: nowrap;
+  background-color: #ffffff;
+  padding: 8px 12px;
+  text-align: right;
+  transition: all 0.4s;
+}
+
+.hoverdown__item:hover {
+  background-color: #f2f2f2;
+}
+
+.hoverdown__mtitle {
+  position: relative;
+}
+
+.hoverdown__active .hoverdown__mtitle:after {
   content: '';
   position: absolute;
   bottom: -3px;
   left: 0;
-  /* right: 0; */
   height: 0;
-  width: 0;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  border-bottom: 3px solid transparent;
+  width: 100%;
+  border-bottom: 3px solid #e06567;
+  animation: hoverTitleBorder 0.4s;
 }
 
-.navs__item:hover>.navs__link:after {
-  border-bottom: 3px solid #e06567;
-  width: 100%;
+@keyframes hoverTitleBorder {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.hoverdown__active .hoverdown__menu {
+  display: block;
+  animation: hoverdownSlide 0.4s;
+}
+
+@keyframes hoverdownSlide {
+  0% {
+    margin-right: 100%;
+  }
+  100% {
+    margin-right: 0;
+  }
 }
 
 .banner {

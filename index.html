@@ -36,17 +36,17 @@
 
     <!-- 右边导航栏 -->
     <nav class="nav-bar__bd">
-      <ul class="navs bs-clearfix">
+      <ul id="js-navs" class="navs bs-clearfix">
         <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#">关于</a></li>
         <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#">技能</a></li>
         <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#">作品</a></li>
         <li class="navs__item hoverdown">
           <a class="navs__link hoverdown__mtitle" href="#">博客</a>
-          <!-- <ul class="hoverdown__menu">
+          <ul class="hoverdown__menu">
             <li class="hoverdown__item">博客1</li>
             <li class="hoverdown__item">博客2</li>
             <li class="hoverdown__item">博客3</li>
-          </ul> -->
+          </ul>
         </li>
         <li class="navs__item"><a class="navs__link hoverdown__mtitle" href="#">日历</a></li>
         <li class="navs__item"><a class="navs__link hoverdown__mtitle" href="#">联系方式</a></li>
@@ -200,6 +200,18 @@
       if (window.scrollY < threshold) {
         navBar.classList.remove('nav-bar--sticky');
       }
+    }
+
+    var hoverMenus = document.querySelectorAll('#js-navs .hoverdown');
+    for (let i = 0; i < hoverMenus.length; i++) {
+      let hoverMenu = hoverMenus[i];
+      hoverMenu.onmouseenter = function(e) {
+        e.target.classList.add('hoverdown__active');
+      };
+
+      hoverMenu.onmouseleave = function(e) {
+        e.target.classList.remove('hoverdown__active');
+      };
     }
   </script>
 </body>
