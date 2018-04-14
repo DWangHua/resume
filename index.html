@@ -186,50 +186,82 @@
       </div>
     </div>
   </section>
-  <script>
-    let dom = {
-      loading: document.getElementById('js-loading'),
-      navBar: document.getElementById('js-nav-bar'),
-      hoverMenus: document.querySelectorAll('#js-navs .hoverdown'),
-      archors: document.querySelectorAll('.navs__link')
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@17.2.0/src/Tween.min.js"></script>
+<script>
+  window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      function(callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+  })();
+  let dom = {
+    loading: document.getElementById('js-loading'),
+    navBar: document.getElementById('js-nav-bar'),
+    hoverMenus: document.querySelectorAll('#js-navs .hoverdown'),
+    anchors: document.querySelectorAll('.navs__link')
+  };
+
+  setTimeout(function() {
+    dom.loading.classList.add('loading--disable');
+  }, 2000);
+
+  var threshold = 10;
+  window.onscroll = function(e) {
+    if (window.scrollY > threshold / 2) {
+      dom.navBar.classList.add('nav-bar--sticky');
+    }
+    if (window.scrollY < threshold) {
+      dom.navBar.classList.remove('nav-bar--sticky');
+    }
+  }
+
+  for (let i = 0; i < dom.hoverMenus.length; i++) {
+    let hoverMenu = dom.hoverMenus[i];
+    hoverMenu.onmouseenter = function(e) {
+      e.currentTarget.classList.add('hoverdown__active');
     };
 
-    setTimeout(function() {
-      dom.loading.classList.add('loading--disable');
-    }, 2000);
+    hoverMenu.onmouseleave = function(e) {
+      e.currentTarget.classList.remove('hoverdown__active');
+    };
+  }
 
-    var threshold = 10;
-    window.onscroll = function(e) {
-      if (window.scrollY > threshold / 2) {
-        dom.navBar.classList.add('nav-bar--sticky');
-      }
-      if (window.scrollY < threshold) {
-        dom.navBar.classList.remove('nav-bar--sticky');
-      }
-    }
 
-    for (let i = 0; i < dom.hoverMenus.length; i++) {
-      let hoverMenu = dom.hoverMenus[i];
-      hoverMenu.onmouseenter = function(e) {
-        e.currentTarget.classList.add('hoverdown__active');
-      };
 
-      hoverMenu.onmouseleave = function(e) {
-        e.currentTarget.classList.remove('hoverdown__active');
-      };
-    }
+  for (let i = 0; i < dom.anchors.length; i++) {
+    dom.anchors[i].onclick = function(e) {
+      e.preventDefault();
+      let href = e.currentTarget.getAttribute('href');
+      if (href.length === 1 && href[0] === '#') return;
+      let element = document.querySelector(href);
+      if (!element) return;
+      let offsetTop = element.offsetTop;
+      // 实时获取navBar的高度
+      let navBarHeight = dom.navBar.offsetHeight;
+      let currentTop = window.scrollY;
+      let targetTop = offsetTop - navBarHeight - 20;
+      let coords = { y: currentTop };
+      // 取下绝对值，防止targetTop - currentTop 是负值
+      let duration = Math.abs(Math.floor((targetTop - currentTop) / 100 * 300));
+      let a = new TWEEN.Tween(coords)
+        .to({ y: targetTop }, duration > 800 ? 800 : duration)
+        .easing(TWEEN.Easing.Quadratic.InOut)
+        .onUpdate(function(res) {
+          window.scrollTo(0, coords.y);
+        })
+        .start();
+    };
+  }
 
-    for (let i = 0; i < dom.archors.length; i++) {
-      dom.archors[i].onclick = function(e) {
-        e.preventDefault();
-        let href = e.currentTarget.getAttribute('href');
-        if (href.length === 1 && href[0] === '#') return;
-        let element = document.querySelector(href);
-        let offsetTop = element.offsetTop;
-        let navBarHeight = dom.navBar.offsetHeight;
-        window.scrollTo(0, offsetTop - navBarHeight - 20);
-      };
-    }
-  </script>
-</body>
+  requestAnimationFrame(tweenUpdate);
+
+  function tweenUpdate(time) {
+    requestAnimationFrame(tweenUpdate);
+    TWEEN.update();
+  }
+</script>
 </html>
