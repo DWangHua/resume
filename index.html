@@ -38,8 +38,22 @@
     <nav class="nav-bar__bd">
       <ul id="js-navs" class="navs bs-clearfix">
         <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteAbout">关于</a></li>
-        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteSkills">技能</a></li>
-        <li class="navs__item hoverdown"><a class="navs__link hoverdown__mtitle" href="#siteWorks">作品</a></li>
+        <li class="navs__item hoverdown">
+          <a class="navs__link hoverdown__mtitle" href="#siteSkills">技能</a>
+          <ul class="hoverdown__menu">
+            <li class="hoverdown__item">技能1</li>
+            <li class="hoverdown__item">技能2</li>
+            <li class="hoverdown__item">技能3</li>
+          </ul>
+        </li>
+        <li class="navs__item hoverdown">
+          <a class="navs__link hoverdown__mtitle" href="#siteWorks">作品</a>
+          <ul class="hoverdown__menu">
+            <li class="hoverdown__item">作品1</li>
+            <li class="hoverdown__item">作品2</li>
+            <li class="hoverdown__item">作品3</li>
+          </ul>
+        </li>
         <li class="navs__item hoverdown">
           <a class="navs__link hoverdown__mtitle" href="#">博客</a>
           <ul class="hoverdown__menu">
@@ -62,8 +76,8 @@
   
 
   <!-- 主要内容 -->
-  <main id="siteAbout" class="main">
-    <div class="card bs-container bs-box-shadow">
+  <main class="main">
+    <div data-pop id="siteAbout" class="card bs-container bs-box-shadow">
       <div class="card__bd bs-clearfix">
         <div class="card__avatar">
           <img src="./images/avatar.jpg" width="299" height="347" alt="头像">
@@ -117,7 +131,7 @@
   </main>
 
   <!-- 专业技能 -->
-  <section id="siteSkills" class="section skills bs-container">
+  <section data-pop id="siteSkills" class="section skills bs-container">
     <h2 class="section__title">专业技能</h2>
     <ol class="skills__content bs-clearfix bs-box-shadow">
       <li class="skill">
@@ -160,7 +174,7 @@
   </section>
 
   <!-- 作品集 -->
-  <section id="siteWorks" class="section works bs-container">
+  <section data-pop id="siteWorks" class="section works bs-container">
     <h2 class="section__title">作品集</h2>
     <div class="bs-align-center">
       <nav class="tabnav">
@@ -190,6 +204,11 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@17.2.0/src/Tween.min.js"></script>
 <script>
+  setTimeout(function() {
+    dom.loading.classList.add('loading--disable');
+    scrollAnimate();
+  }, 1500);
+
   window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
@@ -202,21 +221,27 @@
     loading: document.getElementById('js-loading'),
     navBar: document.getElementById('js-nav-bar'),
     hoverMenus: document.querySelectorAll('#js-navs .hoverdown'),
-    anchors: document.querySelectorAll('.navs__link')
+    anchors: document.querySelectorAll('.navs__link'),
+    pops: [].slice.call(document.querySelectorAll('[data-pop]'))
   };
 
-  setTimeout(function() {
-    dom.loading.classList.add('loading--disable');
-  }, 2000);
+  dom.pops.forEach(function (el) { el.classList.add('scroll-offset') });
+
+  let popsOffsetTops = dom.pops.map(function (el) { return el.offsetTop });
+
 
   var threshold = 10;
   window.onscroll = function(e) {
-    if (window.scrollY > threshold / 2) {
+    let scrollY = window.scrollY;
+    console.log('scroll');
+    if (scrollY > threshold / 2) {
       dom.navBar.classList.add('nav-bar--sticky');
     }
-    if (window.scrollY < threshold) {
+    if (scrollY < threshold) {
       dom.navBar.classList.remove('nav-bar--sticky');
     }
+    
+    scrollAnimate();
   }
 
   for (let i = 0; i < dom.hoverMenus.length; i++) {
@@ -236,6 +261,7 @@
     dom.anchors[i].onclick = function(e) {
       e.preventDefault();
       let href = e.currentTarget.getAttribute('href');
+      console.log(e.currentTarget);
       if (href.length === 1 && href[0] === '#') return;
       let element = document.querySelector(href);
       if (!element) return;
@@ -247,11 +273,19 @@
       let coords = { y: currentTop };
       // 取下绝对值，防止targetTop - currentTop 是负值
       let duration = Math.abs(Math.floor((targetTop - currentTop) / 100 * 300));
+      console.log(e.currentTarget);
       let a = new TWEEN.Tween(coords)
-        .to({ y: targetTop }, duration > 800 ? 800 : duration)
+      .to({ y: targetTop }, duration > 800 ? 800 : duration)
+        .onStart(function() {
+          // console.log(e.target);
+          // e.currentTarget.parentNode.classList.add('hoverdown__active');
+        })
         .easing(TWEEN.Easing.Quadratic.InOut)
         .onUpdate(function(res) {
           window.scrollTo(0, coords.y);
+        })
+        .onComplete(function() {
+          console.log('onEnd');
         })
         .start();
     };
@@ -262,6 +296,29 @@
   function tweenUpdate(time) {
     requestAnimationFrame(tweenUpdate);
     TWEEN.update();
+  }
+
+  function scrollAnimate() {
+    // 元素的offsetTop与scrollY的差值数组
+    let diffs = popsOffsetTops.map(function (offsetTop) { return Math.abs(scrollY - offsetTop) });
+    // 最小值差值
+    let min = Math.min.apply(null, diffs);
+    // 最小值所对应的数组下标
+    let minIndex = diffs.findIndex(function (m) { return min === m });
+    // 为匹配元素添加scroll-active，其余元素移除scroll-active
+    dom.pops.forEach(function (el, index) {
+      let elId = el.id;
+      let tagA = document.querySelector('a[href="#'+ elId +'"]');
+      let li = tagA.parentNode;
+      if (index === minIndex) {
+        li.classList.add('hoverdown__highlight');
+        // el.classList.add('scroll-active');
+        el.classList.remove('scroll-offset');
+      } else{
+        li.classList.remove('hoverdown__highlight');
+        // el.classList.remove('scroll-active');
+      }
+    });
   }
 </script>
 </html>

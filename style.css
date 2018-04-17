@@ -243,6 +243,33 @@ h1, h2, h3, h4, h5, h6 {
 .bs-align-center {
   text-align: center;
 }
+[data-pop] {
+  transform: translateY(0);
+  transition: transform 0.5s;
+}
+.scroll-offset {
+  transform: translateY(100px);
+}
+
+.scroll-offset .skill>.skill__progress-bar>.skill__progress {
+  width: 0%;
+}
+
+/* .scroll-active {
+} */
+
+/* .scroll-animate {
+  transform: translateY(0);
+} */
+/* 
+@keyframes slideup {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+} */
 
 .loading {
   position: fixed;
@@ -365,7 +392,8 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.hoverdown__active .hoverdown__mtitle:after {
+.hoverdown__active .hoverdown__mtitle:after,
+.hoverdown__highlight .hoverdown__mtitle:after {
   content: '';
   position: absolute;
   bottom: -3px;
@@ -599,6 +627,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 4%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.skill__progress {
+  transition: width 0.8s;
 }
 
 .skill:nth-child(even) {
